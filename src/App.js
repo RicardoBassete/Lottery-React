@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 
+import web3 from './web3.js'
+
 function App() {
   return (
     <div className="App">
