@@ -44,6 +44,22 @@ function App() {
     start()    
   }, [])
 
+
+  /**
+   * @param {MouseEvent} event 
+   */
+  const onClick = async event => {
+    const accounts = await web3.eth.getAccounts()
+
+    setMessage('Waiting on transaction success...')
+
+    await lottery.methods.pickWinner().send({
+      from: accounts[0]
+    })
+    
+    setMessage('A winner has been picked!')
+  }
+
   return (
     <div>
       <h2>Lottery Contract</h2>
@@ -61,6 +77,9 @@ function App() {
         </div>
         <button>Enter</button>
       </form>
+      <hr/>
+      <h4>Ready to pick a winner?</h4>
+      <button onClick={onClick}>Pick a winner!</button>
       <hr/>
       <h1>{message}</h1>
     </div>
